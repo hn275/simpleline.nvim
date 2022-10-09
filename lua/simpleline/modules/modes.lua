@@ -1,27 +1,27 @@
-local c = require("statusline.modules.colors")
+local c = require("simpleline.modules.colors")
 local M = {}
 
 local modes = {
 	["n"] = "NORMAL",
 	["no"] = "NORMAL",
 	["v"] = "VISUAL",
-	["V"] = "VISUAL LINE",
-	[""] = "VISUAL BLOCK",
+	["V"] = "V-LINE",
+	[""] = "V-BLOCK",
 	["s"] = "SELECT",
-	["S"] = "SELECT LINE",
-	[""] = "SELECT BLOCK",
+	["S"] = "S-LINE",
+	[""] = "S-BLOCK",
 	["i"] = "INSERT",
 	["ic"] = "INSERT",
 	["R"] = "REPLACE",
-	["Rv"] = "VISUAL REPLACE",
-	["c"] = "COMMAND",
+	["Rv"] = "V-REPLACE",
+	["c"] = "CMD",
 	["cv"] = "VIM EX",
 	["ce"] = "EX",
 	["r"] = "PROMPT",
 	["rm"] = "MOAR",
 	["r?"] = "CONFIRM",
 	["!"] = "SHELL",
-	["t"] = "TERMINAL",
+	["t"] = "TERM",
 }
 
 M.mode = function()

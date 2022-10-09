@@ -1,6 +1,6 @@
-local mode = require("statusline.modules.modes")
-local lsp = require("statusline.modules.lsp")
-local gitbranch = require("statusline.modules.git")()
+local mode = require("simpleline.modules.modes")
+local lsp = require("simpleline.modules.lsp")
+local gitbranch = require("simpleline.modules.git")
 
 Statusline = {}
 
@@ -9,7 +9,7 @@ Statusline.active = function()
 		mode.update(),
 		mode.mode(),
 		mode.invert_update(),
-		gitbranch,
+		gitbranch(),
 		lsp.init(),
 		"%=",
 		"%m%r%y %t",
@@ -19,25 +19,39 @@ Statusline.active = function()
 end
 
 Statusline.inactive = function()
-	return "%#Statusline# %f"
+	return "%#StatuslineMuted# %f"
 end
-Statusline.short = function()
-	return "%#StatusLineNC#   NvimTree"
+
+Statusline.tree = function()
+	return
 end
 
 Statusline.setup = function()
-	-- set statusline
-	vim.api.nvim_exec(
-		[[
-		  augroup Statusline
-		  au!
-		  au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-		  au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-		  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.short()
-		  augroup END
-		]],
-		false
-	)
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+		callback = function()
+			vim.cmd([[setlocal statusline=%!v:lua.Statusline.active()]])
+		end,
+	})
+
+	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+		callback = function()
+			vim.cmd([[setlocal statusline=%!v:lua.Statusline.inactive()]])
+		end,
+	})
+
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+		pattern = { "NvimTree_1" },
+		callback = function()
+			vim.cmd([[setlocal statusline=%#StatuslineAccent#\ ]])
+		end,
+	})
+
+	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+		pattern = { "NvimTree_1" },
+		callback = function()
+			vim.cmd([[setlocal statusline=%#StatuslineMuted#\ ]])
+		end,
+	})
 end
 
 return Statusline
