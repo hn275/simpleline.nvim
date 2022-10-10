@@ -19,24 +19,32 @@ lsp.init = function()
 	local info = ""
 
 	if count["errors"] ~= 0 then
-		-- TODO: map colors
-		-- errors = " %#LspDiagnosticsSignError# " .. count["errors"] .. " "
-		errors = "  " .. count["errors"] .. " "
-	end
-	if count["warnings"] ~= 0 then
-		-- warnings = " %#LspDiagnosticsSignWarning# " .. count["warnings"] .. " "
-		warnings = "  " .. count["warnings"] .. " "
-	end
-	if count["hints"] ~= 0 then
-		-- hints = " %#LspDiagnosticsSignHint# " .. count["hints"] .. " "
-		hints = "  " .. count["hints"] .. " "
-	end
-	if count["info"] ~= 0 then
-		-- info = " %#LspDiagnosticsSignInformation# " .. count["info"] .. " "
-		info = "  " .. count["info"] .. " "
+		errors = " " .. count["errors"] .. " "
 	end
 
-	return errors .. warnings .. hints .. info
+	if count["warnings"] ~= 0 then
+		warnings = " " .. count["warnings"] .. " "
+	end
+
+	if count["hints"] ~= 0 then
+		hints = " " .. count["hints"] .. " "
+	end
+
+	if count["info"] ~= 0 then
+		info = " " .. count["info"] .. " "
+	end
+
+	local file = vim.fn.expand("%")
+	local output = errors .. warnings .. hints .. info
+	-- Empty buf
+	if file == "" then
+		return ""
+	end
+	-- No error
+	if output == "" then
+		return " all gucci "
+	end
+	return output
 end
 
 return lsp

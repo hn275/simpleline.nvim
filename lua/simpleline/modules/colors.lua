@@ -25,33 +25,36 @@ end
 local c = {}
 
 c.colors = function()
-	-- Get hl groups colors
+	-- Get hl groups colors --
+	-- default
+	local default_bg = get_rgb("PMenu")
+	-- mode
 	local accent = get_rgb("Keyword")
-	local insert = get_rgb("Function")
+	local insert = get_rgb("string")
 	local visual = get_rgb("StorageClass")
-	local replace = get_rgb("String")
-	local cmd = get_rgb("Boolean")
-	local terminal = get_rgb("Function")
-	local default = get_rgb()
+	local replace = get_rgb("Function")
+	local cmd = get_rgb("Visual")
+	local terminal = get_rgb("PMenuSel")
 
-	-- Defining a main color group
-	vim.api.nvim_set_hl(0, "StatuslineAccent", { fg = accent.fg, bg = accent.bg, bold = true })
-	vim.api.nvim_set_hl(0, "StatuslineInsertAccent", { fg = insert.bg, bg = insert.fg, bold = true })
-	vim.api.nvim_set_hl(0, "StatuslineVisualAccent", { fg = visual.bg, bg = visual.fg, bold = true })
-	vim.api.nvim_set_hl(0, "StatuslineReplaceAccent", { fg = replace.bg, bg = replace.fg, bold = true })
-	vim.api.nvim_set_hl(0, "StatuslineCmdLineAccent", { fg = cmd.bg, bg = cmd.fg, bold = true })
-	vim.api.nvim_set_hl(0, "StatuslineTerminalAccent", { fg = terminal.bg, bg = terminal.fg, bold = true })
+	local hl = vim.api.nvim_set_hl
+	-- Main --
+	hl(0, "StatuslineAccent", { fg = accent.fg, bold = true })
+	hl(0, "StatuslineInsertAccent", { fg = insert.bg, bg = insert.fg, bold = true })
+	hl(0, "StatuslineVisualAccent", { fg = visual.bg, bg = visual.fg, bold = true })
+	hl(0, "StatuslineReplaceAccent", { fg = replace.bg, bg = replace.fg, bold = true })
+	hl(0, "StatuslineCmdLineAccent", { fg = cmd.bg, bg = cmd.fg, bold = true })
+	hl(0, "StatuslineTerminalAccent", { fg = terminal.bg, bg = terminal.fg, bold = true })
 
-	-- Defining a inverted color group
-	vim.api.nvim_set_hl(0, "IAccent", { fg = accent.fg, bg = default.bg, bold = true })
-	vim.api.nvim_set_hl(0, "IInsertAccent", { fg = insert.fg, bg = default.bg, bold = true })
-	vim.api.nvim_set_hl(0, "IVisualAccent", { fg = visual.fg, bg = default.bg, bold = true })
-	vim.api.nvim_set_hl(0, "IReplaceAccent", { fg = replace.fg, bg = default.bg, bold = true })
-	vim.api.nvim_set_hl(0, "ICmdLineAccent", { fg = cmd.fg, bg = default.bg, bold = true })
-	vim.api.nvim_set_hl(0, "ITerminalAccent", { fg = terminal.fg, bg = default.bg, bold = true })
+	-- Inverted --
+	hl(0, "IAccent", { fg = accent.fg, bg = default_bg.bg })
+	hl(0, "IInsertAccent", { fg = insert.fg, bg = default_bg.bg })
+	hl(0, "IVisualAccent", { fg = visual.fg, bg = default_bg.bg })
+	hl(0, "IReplaceAccent", { fg = replace.fg, bg = default_bg.bg })
+	hl(0, "ICmdLineAccent", { fg = cmd.fg, bg = default_bg.bg })
+	hl(0, "ITerminalAccent", { fg = terminal.fg, bg = default_bg.bg })
 
 	-- Defining a muted color group
-	vim.api.nvim_set_hl(0, "StatuslineMuted", { fg = default.bg, fg = default.fg })
+	hl(0, "StatuslineMuted", { bg = default_bg.bg, fg = default_bg.fg })
 end
 
 return c

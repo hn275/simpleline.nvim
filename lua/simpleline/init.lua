@@ -1,6 +1,7 @@
 local mode = require("simpleline.modules.modes")
 local lsp = require("simpleline.modules.lsp")
 local gitbranch = require("simpleline.modules.git")
+local file = require("simpleline.modules.file")
 
 Statusline = {}
 
@@ -10,11 +11,13 @@ Statusline.active = function()
 		mode.mode(),
 		mode.invert_update(),
 		gitbranch(),
+		" ",
 		lsp.init(),
 		"%=",
-		"%m%r%y %t",
-		"%=",
-		" %l/%L ",
+		mode.invert_update(),
+		" ",
+		file.current(),
+		"  %l/%L ",
 	})
 end
 
@@ -23,7 +26,7 @@ Statusline.inactive = function()
 end
 
 Statusline.tree = function()
-	return
+	return "Tree"
 end
 
 Statusline.setup = function()
