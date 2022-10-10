@@ -27,8 +27,8 @@ local c = {}
 c.colors = function()
 	-- Get hl groups colors
 	local accent = get_rgb("Keyword")
-	local insert = get_rgb("StorageClass")
-	local visual = get_rgb("Function")
+	local insert = get_rgb("Function")
+	local visual = get_rgb("StorageClass")
 	local replace = get_rgb("String")
 	local cmd = get_rgb("Boolean")
 	local terminal = get_rgb("Function")
