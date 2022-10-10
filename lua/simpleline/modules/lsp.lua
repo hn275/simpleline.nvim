@@ -1,6 +1,12 @@
 local lsp = {}
 
 lsp.init = function()
+	-- Empty buf
+	local file = vim.fn.expand("%")
+	if file == "" then
+		return ""
+	end
+
 	local count = {}
 	local levels = {
 		errors = "Error",
@@ -34,12 +40,8 @@ lsp.init = function()
 		info = " " .. count["info"] .. " "
 	end
 
-	local file = vim.fn.expand("%")
 	local output = errors .. warnings .. hints .. info
-	-- Empty buf
-	if file == "" then
-		return ""
-	end
+
 	-- No error
 	if output == "" then
 		return " all gucci "
