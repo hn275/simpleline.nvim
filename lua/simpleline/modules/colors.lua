@@ -48,11 +48,11 @@ c.colors = function()
 
 	-- For powerline solid sep
 	hl(0, "StatuslineSepAccent", { fg = accent.bg, bg = default_bg.bg })
-	hl(0, "StatuslineSepInsertAccent", { fg = insert.fg, bg = insert.bg, bold = true })
-	hl(0, "StatuslineSepVisualAccent", { fg = visual.fg, bg = visual.bg, bold = true })
-	hl(0, "StatuslineSepReplaceAccent", { fg = replace.fg, bg = replace.bg, bold = true })
-	hl(0, "StatuslineSepCmdLineAccent", { fg = cmd.fg, bg = cmd.bg, bold = true })
-	hl(0, "StatuslineSepTerminalAccent", { fg = terminal.fg, bg = terminal.bg, bold = true })
+	hl(0, "StatuslineSepInsertAccent", { fg = insert.fg, bg = default_bg.bg, bold = true })
+	hl(0, "StatuslineSepVisualAccent", { fg = visual.fg, bg = default_bg.bg, bold = true })
+	hl(0, "StatuslineSepReplaceAccent", { fg = replace.fg, bg = default_bg.bg, bold = true })
+	hl(0, "StatuslineSepCmdLineAccent", { fg = cmd.fg, bg = default_bg.bg, bold = true })
+	hl(0, "StatuslineSepTerminalAccent", { fg = terminal.fg, bg = default_bg.bg, bold = true })
 
 	-- Inverted --
 	hl(0, "IAccent", { fg = accent.fg, bg = default_bg.bg })
