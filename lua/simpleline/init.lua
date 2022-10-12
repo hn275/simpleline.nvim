@@ -9,13 +9,15 @@ Statusline.active = function()
 	return table.concat({
 		mode.update(),
 		mode.mode(),
+		mode.sep_update(),
+		"",
 		mode.invert_update(),
 		gitbranch(),
 		" ",
 		lsp.init(),
 		"%=",
 		mode.invert_update(),
-		" ",
+		"%m%r%h  ",
 		file.current(),
 		"  %l/%L ",
 	})

@@ -6,7 +6,7 @@ file.current = function()
 		return "such empty, much blank"
 	end
 
-	return "%m%r%y %t"
+	return "%t"
 end
 
 return file

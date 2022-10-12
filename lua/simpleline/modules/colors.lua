@@ -37,6 +37,7 @@ c.colors = function()
 	local terminal = get_rgb("PMenuSel")
 
 	local hl = vim.api.nvim_set_hl
+
 	-- Main --
 	hl(0, "StatuslineAccent", { fg = accent.fg, bold = true })
 	hl(0, "StatuslineInsertAccent", { fg = insert.bg, bg = insert.fg, bold = true })
@@ -44,6 +45,14 @@ c.colors = function()
 	hl(0, "StatuslineReplaceAccent", { fg = replace.bg, bg = replace.fg, bold = true })
 	hl(0, "StatuslineCmdLineAccent", { fg = cmd.bg, bg = cmd.fg, bold = true })
 	hl(0, "StatuslineTerminalAccent", { fg = terminal.bg, bg = terminal.fg, bold = true })
+
+	-- For powerline solid sep
+	hl(0, "StatuslineSepAccent", { fg = accent.bg, bg = default_bg.bg })
+	hl(0, "StatuslineSepInsertAccent", { fg = insert.fg, bg = insert.bg, bold = true })
+	hl(0, "StatuslineSepVisualAccent", { fg = visual.fg, bg = visual.bg, bold = true })
+	hl(0, "StatuslineSepReplaceAccent", { fg = replace.fg, bg = replace.bg, bold = true })
+	hl(0, "StatuslineSepCmdLineAccent", { fg = cmd.fg, bg = cmd.bg, bold = true })
+	hl(0, "StatuslineSepTerminalAccent", { fg = terminal.fg, bg = terminal.bg, bold = true })
 
 	-- Inverted --
 	hl(0, "IAccent", { fg = accent.fg, bg = default_bg.bg })
@@ -55,6 +64,10 @@ c.colors = function()
 
 	-- Defining a muted color group
 	hl(0, "StatuslineMuted", { bg = default_bg.bg, fg = default_bg.fg })
+
+	-- Tabline
+	hl(0, "Tabline", { fg = accent.fg })
+	hl(0, "TablineSel", { fg = accent.bg, bg = accent.fg, bold = true })
 end
 
 return c
