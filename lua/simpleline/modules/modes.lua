@@ -53,6 +53,27 @@ M.update = function()
 	return mode_color
 end
 
+M.sep_update = function()
+	c.colors()
+
+	local current_mode = vim.api.nvim_get_mode().mode
+	local mode_color = ""
+	if current_mode == "n" then
+		mode_color = "%#StatuslineSepAccent#"
+	elseif current_mode == "i" or current_mode == "ic" then
+		mode_color = "%#StatuslineSepInsertAccent#"
+	elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
+		mode_color = "%#StatuslineSepVisualAccent#"
+	elseif current_mode == "R" then
+		mode_color = "%#StatuslineSepReplaceAccent#"
+	elseif current_mode == "c" then
+		mode_color = "%#StatuslineSepCmdLineAccent#"
+	elseif current_mode == "t" then
+		mode_color = "%#StatuslineSepTerminalAccent#"
+	end
+	return mode_color
+end
+
 M.invert_update = function()
 	c.colors()
 
