@@ -55,6 +55,10 @@ c.colors = function()
 
 	-- Defining a muted color group
 	hl(0, "StatuslineMuted", { bg = default_bg.bg, fg = default_bg.fg })
+
+	-- Tabline
+	hl(0, "Tabline", { fg = accent.fg })
+	hl(0, "TablineSel", { fg = accent.bg, bg = accent.fg, bold = true })
 end
 
 return c
