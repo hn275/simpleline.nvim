@@ -27,30 +27,28 @@ local modes = {
 M.mode = function()
 	local current_mode = vim.api.nvim_get_mode().mode
 	if modes[current_mode] == nil then
-		return " BRUH "
+		return " N "
 	end
-	return " " .. modes[current_mode] .. " "
+	-- return modes[current_mode]
+	return " " .. string.upper(current_mode) .. " "
 end
 
 M.update = function()
 	c.colors()
 
 	local current_mode = vim.api.nvim_get_mode().mode
-	local mode_color = ""
-	if current_mode == "n" then
-		mode_color = "%#StatuslineAccent#"
-	elseif current_mode == "i" or current_mode == "ic" then
-		mode_color = "%#StatuslineInsertAccent#"
+	if current_mode == "i" or current_mode == "ic" then
+		return "%#StatuslineInsertAccent#"
 	elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
-		mode_color = "%#StatuslineVisualAccent#"
+		return "%#StatuslineVisualAccent#"
 	elseif current_mode == "R" then
-		mode_color = "%#StatuslineReplaceAccent#"
+		return "%#StatuslineReplaceAccent#"
 	elseif current_mode == "c" then
-		mode_color = "%#StatuslineCmdLineAccent#"
+		return "%#StatuslineCmdLineAccent#"
 	elseif current_mode == "t" then
-		mode_color = "%#StatuslineTerminalAccent#"
+		return "%#StatuslineTerminalAccent#"
 	end
-	return mode_color
+	return "%#StatuslineAccent#"
 end
 
 M.sep_update = function()
@@ -78,21 +76,18 @@ M.invert_update = function()
 	c.colors()
 
 	local current_mode = vim.api.nvim_get_mode().mode
-	local mode_color = ""
-	if current_mode == "n" then
-		mode_color = "%#IAccent#"
-	elseif current_mode == "i" or current_mode == "ic" then
-		mode_color = "%#IInsertAccent#"
+	if current_mode == "i" or current_mode == "ic" then
+		return "%#IInsertAccent#"
 	elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
-		mode_color = "%#IVisualAccent#"
+		return "%#IVisualAccent#"
 	elseif current_mode == "R" then
-		mode_color = "%#IReplaceAccent#"
+		return "%#IReplaceAccent#"
 	elseif current_mode == "c" then
-		mode_color = "%#ICmdLineAccent#"
+		return "%#ICmdLineAccent#"
 	elseif current_mode == "t" then
-		mode_color = "%#ITerminalAccent#"
+		return "%#ITerminalAccent#"
 	end
-	return mode_color
+	return "%#IAccent#"
 end
 
 return M
