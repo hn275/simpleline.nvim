@@ -29,13 +29,17 @@ Statusline.tree = function()
 end
 
 Statusline.setup = function()
+	local simplelineGroup = vim.api.nvim_create_augroup("SimpleLineGr", { clear = true })
+
 	vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+		group = simplelineGroup,
 		callback = function()
 			vim.cmd([[setlocal statusline=%!v:lua.Statusline.active()]])
 		end,
 	})
 
 	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+		group = simplelineGroup,
 		callback = function()
 			vim.cmd([[setlocal statusline=%!v:lua.Statusline.inactive()]])
 		end,
@@ -43,6 +47,7 @@ Statusline.setup = function()
 
 	vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
 		pattern = { "NvimTree_1" },
+		group = simplelineGroup,
 		callback = function()
 			vim.cmd([[setlocal statusline=%#StatuslineAccent#\ ]])
 		end,
@@ -50,6 +55,7 @@ Statusline.setup = function()
 
 	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 		pattern = { "NvimTree_1" },
+		group = simplelineGroup,
 		callback = function()
 			vim.cmd([[setlocal statusline=%#StatuslineMuted#\ ]])
 		end,
