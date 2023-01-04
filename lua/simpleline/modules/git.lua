@@ -1,11 +1,10 @@
 return function()
-	local branch = vim.api.nvim_exec("echo gitbranch#name()", true)
-	local gitbranch = ""
-	if branch == "" then
-		gitbranch = ""
-	else
-		gitbranch = "  " .. branch .. " "
+	local branch = vim.api.nvim_exec("echo FugitiveStatusline()", true)
+	local branch_name = branch:gmatch("%((%a+)%)")()
+
+	if branch_name ~= nil then
+		branch_name = "  " .. branch_name
 	end
 
-	return gitbranch
+	return branch_name or ""
 end
