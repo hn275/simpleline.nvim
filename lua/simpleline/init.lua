@@ -12,11 +12,11 @@ Statusline.active = function()
 		mode.sep_update(),
 		mode.invert_update(),
 		gitbranch(),
-		" " .. lsp.init(),
+		lsp.init(),
 		"%=",
 		mode.invert_update(),
 		file.current(),
-		" [%l:%L] ",
+		" [%l:%L]",
 	})
 end
 

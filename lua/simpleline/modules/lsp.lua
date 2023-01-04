@@ -25,26 +25,26 @@ lsp.init = function()
 	local info = ""
 
 	if count["errors"] ~= 0 then
-		errors = " " .. count["errors"] .. " "
+		errors = "  " .. count["errors"] .. " "
 	end
 
 	if count["warnings"] ~= 0 then
-		warnings = " " .. count["warnings"] .. " "
+		warnings = "  " .. count["warnings"] .. " "
 	end
 
 	if count["hints"] ~= 0 then
-		hints = " " .. count["hints"] .. " "
+		hints = "  " .. count["hints"] .. " "
 	end
 
 	if count["info"] ~= 0 then
-		info = " " .. count["info"] .. " "
+		info = "  " .. count["info"] .. " "
 	end
 
 	local output = errors .. warnings .. hints .. info
 
 	-- No error
 	if output == "" then
-		return " all gucci "
+		return "  "
 	end
 	return output
 end
