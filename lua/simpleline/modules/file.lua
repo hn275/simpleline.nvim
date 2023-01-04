@@ -6,7 +6,7 @@ file.current = function()
 		return "[No Name]"
 	end
 
-	return "%t"
+	return "%f"
 end
 
 return file
